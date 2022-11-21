@@ -8,6 +8,9 @@ Most of the work relating to `regolith on wayland` is packaged and published in 
 sudo mkdir -p /etc/apt/sources.list.d/
 sudo touch /etc/apt/sources.list.d/regolith-experimental.list
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/regolith-archive-keyring.gpg] https://regolith-desktop.org/experimental-debian-testing-amd64 testing main" | sudo tee /etc/apt/sources.list.d/regolith-experimental.list
+
+sudo apt update
+sudo apt upgrade
 ```
 
 ## Installing packages
