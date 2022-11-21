@@ -40,11 +40,6 @@ sudo apt install gdm3
 sudo apt install xdg-desktop-portal xdg-desktop-portal-wlr
 ```
 
-## Install regolith-session-sway with apt
-
-```
-sudo apt install regolith-session-sway
-```
 
 # What doesn't work?
 - i3-status (no status icons or buttons on panel)
