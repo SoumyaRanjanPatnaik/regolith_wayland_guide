@@ -24,7 +24,7 @@ Download the `packages.tar.gz` file from the [release section](https://github.co
 ```bash
 mkdir regolith_sway 
 cd regolith_sway
-tar -xvzf ../packages.tar.xz
+tar -xvzf ../packages.tar.gz
 ```
 
 Now you need to install the regolith-look-default and regolith-look-default-loader packages. 
