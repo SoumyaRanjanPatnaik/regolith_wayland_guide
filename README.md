@@ -58,6 +58,11 @@ Slick greeter crashes when trying to load wayland sessions. You'll may have a be
 sudo apt install gdm3
 ```
 
+## Reinstalling the looks
+While uninstalling `regolith-look-default`, all the installed looks got removed as well. You can either install the looks you want one by one, or you can install them all using
+```
+sudo apt install "regolith-look-*"
+```
 ## Screen sharing on Wayland
 ```
 sudo apt install xdg-desktop-portal xdg-desktop-portal-wlr
