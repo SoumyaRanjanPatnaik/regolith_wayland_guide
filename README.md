@@ -47,6 +47,12 @@ Now, try to install all the packages again. This time you shouldn't get any more
 sudo dpkg -i *.deb
 ```
 
+Apply hold on all of the packages we just installed to prevent them from being upgraded (this is important if you don't want to break your system after upgrades).
+
+```bash
+sudo apt-mark hold regolith-displayd regolith-inputd ilia regolith-ftue regolith-sway-config "regolith-look-default*" "regolith-session-*"
+```
+
 ## Install gdm3 / lightdm-gtk-greeter
 
 Slick greeter crashes when trying to load wayland sessions. You'll may have a better time with `lightdm-gtk-greeter`, but for some reason `gsd-rfkill` doesn't seem to work as the bluetooth panel of gnome-control-center says it cannot find any bluetooth adapters. `gdm3` works the best and has excellent compatibility with everything gnome. 
