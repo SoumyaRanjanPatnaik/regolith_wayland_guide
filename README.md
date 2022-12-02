@@ -38,12 +38,12 @@ sudo apt remove sway # remove sway to avoid conflicts
 
 ## Installing packages
 
-Download the `packages.tar.gz` file from the [release section](https://github.com/SoumyaRanjanPatnaik/regolith_wayland_guide/releases/tag/v0.1-alpha) and extract them. You can also do this using the following commands
+Download the `packages.tar.gz` file from the [release section](https://github.com/SoumyaRanjanPatnaik/regolith_wayland_guide/releases/tag/v0.1.2-alpha) and extract them. You can also do this using the following commands
 
 ```bash
 mkdir regolith_sway
 cd regolith_sway
-wget https://github.com/SoumyaRanjanPatnaik/regolith_wayland_guide/releases/download/v0.1-alpha/packages.tar.gz
+wget https://github.com/SoumyaRanjanPatnaik/regolith_wayland_guide/releases/download/v0.1.2-alpha/packages.tar.gz.1
 tar -xvzf packages.tar.gz
 ```
 
