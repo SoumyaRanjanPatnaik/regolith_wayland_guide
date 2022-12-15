@@ -18,19 +18,21 @@ Before starting to follow this guide, please note that the packages you are inst
 
 Most of the work relating to `regolith on wayland` is packaged and published in the regolith experimental package repository. To add it to the `apt` package manager, use the following command
 
-```bash
+```bashd set of services that connect users with the network resources they need to get their work d
 sudo mkdir -p /etc/apt/sources.list.d/
 sudo touch /etc/apt/sources.list.d/regolith-experimental.list
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/regolith-archive-keyring.gpg] https://regolith-desktop.org/experimental-debian-testing-amd64 testing main" | sudo tee /etc/apt/sources.list.d/regolith-experimental.list
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/regolith-archive-keyring.gpg] https://regolith-desktop.org/experimental-ubuntu-kinetic-amd64 kinetic main" | sudo tee /etc/apt/sources.list.d/regolith-experimental.list
 
 sudo apt update
 sudo apt upgrade
+sudo apt install --fix-broken
 ```
 
 ## Uninstalling conflicting packages
 
+As of now, `sway` and `sway-regolith` are conflicting packages.
+
 ```bash
-sudo apt remove regolith-session-flashback regolith-look-default
 sudo apt remove sway # remove sway to avoid conflicts
 ```
 
@@ -38,45 +40,10 @@ sudo apt remove sway # remove sway to avoid conflicts
 
 ## Installing packages
 
-Download the `packages.tar.gz` file from the [release section](https://github.com/SoumyaRanjanPatnaik/regolith_wayland_guide/releases/tag/v0.1.2-alpha) and extract them. You can also do this using the following commands
+TODO: add regolith-displayd and regolith-inputd as dependencies to regolith-session-sway
 
 ```bash
-mkdir regolith_sway
-cd regolith_sway
-wget https://github.com/SoumyaRanjanPatnaik/regolith_wayland_guide/releases/download/v0.1.2-alpha/packages.tar.gz.1
-tar -xvzf packages.tar.gz
-```
-
-**NOTE**: Errors during this part of the installation is expected behaviour as dpkg cannot install the dependencies using apt. Installing unmet dependencies using `sudo apt install --fix-broken` and retrying the installation should be successful.
-
-Now you need to install the regolith-look-default and regolith-look-default-loader packages.
-
-```bash
-sudo dpkg -i  regolith-look-default-loader_0.7.5_amd64.deb regolith-look-default_0.7.5_amd64.deb
-```
-
-Now install all the packages:
-
-```bash
-sudo dpkg -i *.deb
-```
-
-At this point, **you should get several errors due to unmet dependencies**. Install these dependencies using
-
-```bash
-sudo apt install --fix-broken
-```
-
-Now, try to install all the packages again. This time you shouldn't get any more errors.
-
-```bash
-sudo dpkg -i *.deb
-```
-
-Apply hold on all of the packages we just installed to prevent them from being upgraded (this is important if you don't want to break your system after upgrades).
-
-```bash
-sudo apt-mark hold regolith-displayd regolith-inputd ilia regolith-ftue regolith-sway-config "regolith-look-default*" "regolith-session-*"
+sudo apt install regolith-session-sway regolith-i3-config regolith-displayd regolith-inputd
 ```
 
 ## Install gdm3 / lightdm-gtk-greeter
@@ -90,15 +57,9 @@ Slick greeter crashes when trying to load wayland sessions. You'll may have a be
 sudo apt install gdm3
 ```
 
-## Reinstalling the looks
-
-While uninstalling `regolith-look-default`, all the installed looks got removed as well. You can either install the looks you want one by one, or you can install them all using
-
-```bash
-sudo apt install "regolith-look-*"
-```
-
 ## Screen sharing on Wayland
+
+TODO: add as dependency to `regolith-sway-config` package
 
 ```bash
 sudo apt install xdg-desktop-portal xdg-desktop-portal-wlr
