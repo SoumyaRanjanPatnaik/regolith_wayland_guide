@@ -29,11 +29,11 @@ sudo apt install --fix-broken
 ```
 
 ## Installing packages
-Remove sway if already installed and install `regolith-desktop-wayland` package to install all the wayland related packages.
+Remove sway if already installed and install `regolith-session-sway` package to install all the wayland related packages.
 
 ```bash
 sudo apt remove sway # remove sway to avoid conflicts
-sudo apt install regolith-desktop-wayland
+sudo apt install regolith-sesion-sway
 ```
 
 ## Install lightdm-gtk-greeter
@@ -47,7 +47,7 @@ sudo apt install lightdm-gtk-greeter
 # Uninstall Regolith on Wayland 
 This will remove the experimental stage and all the packages from wayland.
 ```bash
-sudo apt remove --purge sudo apt remove regolith-desktop-wayland
+sudo apt remove --purge sudo apt remove regolith-session-sway
 sudo rm /etc/apt/sources.list.d/regolith-experimental.list
 sudo apt update && sudo apt upgrade
 ```
