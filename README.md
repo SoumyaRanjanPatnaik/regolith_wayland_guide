@@ -28,52 +28,27 @@ sudo apt upgrade
 sudo apt install --fix-broken
 ```
 
-## Uninstalling conflicting packages
-
-As of now, `sway` and `sway-regolith` are conflicting packages.
+## Installing packages
+Remove sway if already installed and install `regolith-session-sway` package to install all the wayland related packages.
 
 ```bash
 sudo apt remove sway # remove sway to avoid conflicts
+sudo apt install regolith-sesion-sway
 ```
 
-**Note**: **DO NOT** reboot or logout at this point. You won't have any regolith-sessions installed. But if you accidentally reboot or logout, you can still continue to follow this guide from a tty (accessible using ctrl+alt+f1) and everything should go back to the way it was after installing the packages in the next step.
+## Install lightdm-gtk-greeter
 
-## Installing packages
-
-TODO: add regolith-displayd and regolith-inputd as dependencies to regolith-session-sway
+Slick greeter crashes when trying to load wayland sessions. You'll may have a better time with `lightdm-gtk-greeter`.
 
 ```bash
-sudo apt install regolith-session-sway regolith-i3-config regolith-displayd regolith-inputd
+sudo apt install lightdm-gtk-greeter
 ```
 
-## Install gdm3 / lightdm-gtk-greeter
-
-Slick greeter crashes when trying to load wayland sessions. You'll may have a better time with `lightdm-gtk-greeter`, but for some reason `gsd-rfkill` doesn't seem to work as the bluetooth panel of gnome-control-center says it cannot find any bluetooth adapters. `gdm3` works the best and has excellent compatibility with everything gnome.
-
-**Note**: If you don't want to pull in gnome dependencies (including gnome-shell) you might want to use `lightdm-gtk-greeter`.
-
+# Uninstall Regolith on Wayland 
+This will remove the experimental stage and all the packages from wayland.
 ```bash
-# sudo apt install lightdm-gtk-greeter
-sudo apt install gdm3
-```
-
-## Screen sharing on Wayland
-
-TODO: add as dependency to `regolith-sway-config` package
-
-```bash
-sudo apt install xdg-desktop-portal xdg-desktop-portal-wlr
-```
-
-# Undo the changes
-
-**NOTE**: This portion of the guide has not been tested yet.
-
-The following commands should (in theory) undo all the changes made to the regolith environment. If something undesirable happens, you need to follow all the steps you did to install `Regolith on Wayland` and your system should go back to normal.
-
-```bash
-sudo apt remove --purge regolith-displayd regolith-inputd regolith-session-sway regolith-sway-config
-sudo apt-mark unhold ilia regolith-ftue "regolith-look-default*" "regolith-session-*"
+sudo apt remove --purge sudo apt remove regolith-session-sway
+sudo rm /etc/apt/sources.list.d/regolith-experimental.list
 sudo apt update && sudo apt upgrade
 ```
 
@@ -112,25 +87,7 @@ set_from_resource $var_name resource_name [fallback_value]
 
 ## Keyboard layout
 
-The keboard layout will change to EN-US by default. If you wan't to change the keyboard layout, you'll have to add the following snippet in any of the files present in the `~/.config/regolith2/sway/config.d` directory.
-
-```
-input type:keyboard {
-    xkb_layout <layout_code> [, optional_layout1, optional_layout2]
-}
-```
-
-The `<layout_code>` needs to be a valid layout code like `us`, `es`, `de`, `eu`. etc. Multiple layouts can be specified by separating them with commas.
-
-For example, if you want to set the layout to `es`, you can create the file `~/.config/regolith2/sway/config.d/kbd_layout_es` and add the following to it.
-
-```
-input type:keyboard {
-    xkb_layout es
-}
-```
-
-For more input related information, you can refer to the [sway-input man page](https://man.archlinux.org/man/sway-input.5.
+You can set the keyboard layout from `gnome-control-center` or `regolith-control-center`.
 
 ## Clamshell Mode
 
